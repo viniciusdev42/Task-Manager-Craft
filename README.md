@@ -10,14 +10,14 @@ Por fora,o Task Manager Craft é um gerenciador de tarefas: o usuário cria tare
 
 O Task Manager Craft utiliza as seguintes estruturas de dados:
 
-1.`Hash Table`: Permite o **acesso direto** à tarefa pelo ID
-2.`Lista de Prioridades (Heap)`: Permite o **Agendamento de Tarefas**
-3.`Árvore AVL`: Permite **índices ordenados** (título,prazo,prioridade)
-4.`Árvore TRIE`: Permite a busca por **prefixo** e **autocomplete**
-5.`Processamento de Cadeia de Caracteres`: Permite a **normalização,a tokenização e a busca textual**.
-6.`Árvore B+ & Pager`: Permite a **persistência** e a **indexação em disco**
-7.`Grafos`: Permite gerenciar a **dependência entre tarefas**,a **detecção de ciclos** e a **ordenação topológica**
-8.`Busca Digital`: Permite a busca baseada em **dígitos** (Digital Search Tree,Radix,Patricia)
+1. `Hash Table`: Permite o **acesso direto** à tarefa pelo ID
+2. `Lista de Prioridades (Heap)`: Permite o **Agendamento de Tarefas**
+3. `Árvore AVL`: Permite **índices ordenados** (título,prazo,prioridade)
+4. `Árvore TRIE`: Permite a busca por **prefixo** e **autocomplete**
+5. `Processamento de Cadeia de Caracteres`: Permite a **normalização,a tokenização e a busca textual**.
+6. `Árvore B+ & Pager`: Permite a **persistência** e a **indexação em disco**
+7. `Grafos`: Permite gerenciar a **dependência entre tarefas**,a **detecção de ciclos** e a **ordenação topológica**
+8. `Busca Digital`: Permite a busca baseada em **dígitos** (Digital Search Tree,Radix,Patricia)
 
 ### Arquitetura
 
