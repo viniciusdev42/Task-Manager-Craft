@@ -1,0 +1,85 @@
+# =============================================================================
+# Task Manager Craft - .dockerignore
+#
+# O Dockerfile só precisa de: CMakeLists.txt, src/, resources/, tests/ e
+# benchmarks/. Todo o resto fica fora do contexto de build.
+# =============================================================================
+
+# --- Controle de versão -------------------------------------------------------
+.git
+.gitignore
+.gitattributes
+
+# --- Arquivos do próprio Docker -----------------------------------------------
+Dockerfile*
+.dockerignore
+docker-compose*.yml
+docker-compose*.yaml
+
+# --- Diretórios de build (o build acontece dentro do container) ---------------
+build/
+build-*/
+cmake-build-*/
+out/
+bin/
+install/
+
+# --- Artefatos do CMake / Qt gerados localmente -------------------------------
+**/CMakeCache.txt
+**/CMakeFiles/
+**/cmake_install.cmake
+**/CTestTestfile.cmake
+**/*_autogen/
+compile_commands.json
+CMakeUserPresets.json
+CMakeLists.txt.user*
+*.pro.user*
+
+# --- Binários e objetos compilados --------------------------------------------
+**/*.o
+**/*.obj
+**/*.a
+**/*.so
+**/*.so.*
+**/*.dylib
+**/*.dll
+**/*.exe
+**/*.pdb
+
+# --- Dados de persistência locais ---------------------------------------------
+data/
+*.db
+
+# --- Cobertura, profiling e resultados de benchmark ---------------------------
+**/*.gcda
+**/*.gcno
+**/*.profraw
+**/*.profdata
+coverage/
+benchmarks/results/
+perf.data*
+callgrind.out.*
+
+# --- Documentação (não é usada no build) --------------------------------------
+docs/
+*.md
+LICENSE*
+
+# --- IDEs e editores ----------------------------------------------------------
+.vscode/
+.idea/
+.vs/
+.cache/
+.clangd/
+*.swp
+*.swo
+*~
+
+# --- Sistema operacional ------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs e temporários -------------------------------------------------------
+*.log
+*.tmp
