@@ -106,6 +106,7 @@ O framework gráfico escolhido foi o **Qt6/Qt Widgets** devido a escolha de arqu
 ``` Text
 TaskManager/
 ├── CMakeLists.txt
+├── Dockerfile
 ├── src/
 │   ├── model/
 │   │   ├── entities/
