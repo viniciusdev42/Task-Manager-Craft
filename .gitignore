@@ -1,0 +1,106 @@
+# =============================================================================
+# Task Manager Craft - .gitignore
+# =============================================================================
+
+# --- Diretórios de build ------------------------------------------------------
+/build/
+/build-*/
+/cmake-build-*/
+/out/
+/bin/
+/install/
+
+# --- Artefatos gerados pelo CMake (caso o build seja feito "in-source") -------
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+Testing/
+_deps/
+compile_commands.json
+CMakeUserPresets.json
+
+# --- Artefatos do Qt (MOC / UIC / RCC) ----------------------------------------
+*_autogen/
+.qmake.stash
+.rcc/
+.moc/
+.uic/
+*.qm
+*.autosave
+
+# --- Qt Creator ---------------------------------------------------------------
+CMakeLists.txt.user*
+*.pro.user*
+*.qtcreator
+
+# --- Binários e objetos compilados --------------------------------------------
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.pdb
+*.ilk
+*.exp
+*.gch
+*.pch
+
+# Executável principal (builds fora do diretório build/)
+TaskManagerCraft
+tmc_test_*
+tmc_bench_*
+
+# --- Dados de persistência (Árvore B / Pager) ---------------------------------
+# Arquivos gerados em tempo de execução. Ajuste as extensões conforme o
+# formato usado pelo storage.
+*.db
+/data/
+
+# --- Cobertura, profiling e sanitizers ----------------------------------------
+*.gcda
+*.gcno
+*.gcov
+*.profraw
+*.profdata
+coverage/
+callgrind.out.*
+perf.data*
+vgcore.*
+
+# --- Benchmarks: resultados ---------------------------------------------------
+benchmarks/results/
+
+# --- Documentação gerada ------------------------------------------------------
+docs/html/
+docs/latex/
+
+# --- IDEs e editores ----------------------------------------------------------
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+.vs/
+*.swp
+*.swo
+*~
+.cache/
+.clangd/
+
+# --- Sistema operacional ------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs e temporários -------------------------------------------------------
+*.log
+*.tmp
