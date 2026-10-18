@@ -105,22 +105,25 @@ O framework gráfico escolhido foi o **Qt6/Qt Widgets** devido a escolha de arqu
 
 ``` Text
 TaskManager/
-├── CMakeLists.txt
+├── CMake
 ├── Dockerfile
+├── .dockerignore
+├── .gitignore
+├── README
 ├── src/
 │   ├── model/
-│   │   ├── entities/
-│   │   ├── services/
-│   │   ├── repositories/
+│   │   ├── entities
+│   │   ├── services
+│   │   ├── repositories
 │   │   ├── structures/
 │   │   │   ├── hash/
-│   │   │   ├── trees/
+│   │   │   ├── tree/
 │   │   │   ├── trie/
 │   │   │   ├── graph/
-│   │   │   ├── priority_queue/
+│   │   │   ├── queue/
 │   │   │   ├── strings/
 │   │   │   └── digital_search/
-│   │   └── storage/
+│   │   │ 
 │   ├── view/
 │   │   ├── windows/
 │   │   ├── widgets/
