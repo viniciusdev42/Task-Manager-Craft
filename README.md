@@ -1,14 +1,14 @@
-# Task-Manager-Craft
+# HouseM
 
 ## Visão Geral
 
 ### Descrição
 
-O **Task Manager Craft** é um gerenciador de tarefas desenvolvido em C++ que serve como aplicação e laboratório de estruturas de dados. Nele,cada estrutura de dados existe para resolver uma necessidade concreta do sistema. Cada estrutura possuí a sua própria implementação,testes unitários e testes de carga.
+O HouseM é um gerenciador de tarefas domésticas desenvolvido em C++ que serve como aplicação e laboratório de estruturas de dados. Nele,cada estrutura de dados existe para resolver uma necessidade concreta do sistema. Cada estrutura possuí a sua própria implementação,testes unitários e testes de carga.
 
-Por fora,o Task Manager Craft é um gerenciador de tarefas: o usuário cria tarefas com título,descrição,prioridade e prazo e estado(concluída,em andamento,em espera,cancelada). Por dentro,o Task Manager Craft é um projeto de engenharia de software e de algoritmos: todo o armazenamento,indexação,busca e persistência são implementados do zero,sem delegar às estruturas de dados e bibliotecas padrão.
+Por fora,o HouseM é um gerenciador de tarefas: o usuário cria tarefas com título,descrição,prioridade e prazo e estado(concluída,em andamento,em espera,cancelada). Por dentro,o HouseM é um projeto de engenharia de software e de algoritmos: todo o armazenamento,indexação,busca e persistência são implementados do zero,sem delegar às estruturas de dados e bibliotecas padrão.
 
-O Task Manager Craft utiliza as seguintes estruturas de dados:
+O HouseM utiliza as seguintes estruturas de dados:
 
 1. `Hash Table`: Permite o **acesso direto** à tarefa pelo ID
 2. `Lista de Prioridades (Heap)`: Permite o **Agendamento de Tarefas**
@@ -21,9 +21,9 @@ O Task Manager Craft utiliza as seguintes estruturas de dados:
 
 ### Arquitetura
 
-O Task Manager Craft utiliza o padrão arquitetural **MVC (Model-View-Controller)**. Ele separa a representação dos dados e as regras da aplicação,a interface apresentada ao usuário e o tratamento das interações. Essa divisão busca reduzir o acoplamento, facilitar os testes e permitir que cada parte evolua sem exigir alterações desnecessárias nas demais.
+O HouseM utiliza o padrão arquitetural **MVC (Model-View-Controller)**. Ele separa a representação dos dados e as regras da aplicação,a interface apresentada ao usuário e o tratamento das interações. Essa divisão busca reduzir o acoplamento, facilitar os testes e permitir que cada parte evolua sem exigir alterações desnecessárias nas demais.
 
-O Task Manager Craft segue os seguintes princípios:
+O HouseM segue os seguintes princípios:
 
 1. **Separação de Responsabilidades**: cada componente possui um propósito claro
 
@@ -143,6 +143,6 @@ TaskManager/
 
 ## Sobre o Projeto
 
-O Task Manager Craft é desenvolvido utilizando IA Generativa (Claude e ChatGPT) para **programação,refatoração,testes,planejamento e sugestões**.
+O HouseM é desenvolvido utilizando IA Generativa (Claude e ChatGPT) para **programação,refatoração,testes,planejamento e sugestões**.
 
 As principais decisões do projeto são tomadas com base nas **recomendações dos modelos**. Não estão incluídos modelos agênticos (Codex & Cowork) devido a questões de orçamento.
