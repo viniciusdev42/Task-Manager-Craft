@@ -22,6 +22,7 @@ endif()
 # ---------------------------------------------------------------------------
 option(TMC_BUILD_TESTS       "Compilar os testes (tests/)"              ON)
 option(TMC_BUILD_BENCHMARKS  "Compilar os benchmarks (benchmarks/)"     OFF)
+option(TMC_FETCH_DOCTEST     "Baixar o Doctest (FetchContent) se não houver instalação local" ON)
 option(TMC_ENABLE_WARNINGS   "Habilitar avisos extras do compilador"    ON)
 option(TMC_ENABLE_SANITIZERS "Habilitar ASan/UBSan (GCC/Clang, Debug)"  OFF)
 
@@ -65,6 +66,47 @@ endif()
 # Qt recente (6.8+), cujos headers já compilam sem erros com o libstdc++ 15.
 find_package(Qt6 6.5 REQUIRED COMPONENTS ${TMC_QT_COMPONENTS})
 qt_standard_project_setup()
+
+# ---------------------------------------------------------------------------
+# Doctest (framework de testes header-only) - só é necessário com os testes
+# ---------------------------------------------------------------------------
+# 1) Tenta usar uma instalação existente (vcpkg, Conan, apt, brew, etc.).
+# 2) Se não achar e TMC_FETCH_DOCTEST=ON, baixa do GitHub via FetchContent.
+# O alvo resultante é sempre doctest::doctest.
+if(TMC_BUILD_TESTS)
+    find_package(doctest 2.4.9 QUIET CONFIG)
+
+    if(doctest_FOUND)
+        set(TMC_DOCTEST_ORIGIN "instalado (${doctest_VERSION})")
+    elseif(TMC_FETCH_DOCTEST)
+        include(FetchContent)
+
+        FetchContent_Declare(doctest
+            GIT_REPOSITORY https://github.com/doctest/doctest.git
+            GIT_TAG        v2.4.11
+            GIT_SHALLOW    ON
+        )
+
+        # Não compilar os testes do Doctest nem instalá-lo junto com o projeto
+        set(DOCTEST_WITH_TESTS              OFF CACHE BOOL "" FORCE)
+        set(DOCTEST_WITH_MAIN_IN_STATIC_LIB OFF CACHE BOOL "" FORCE)
+        set(DOCTEST_NO_INSTALL              ON  CACHE BOOL "" FORCE)
+
+        # O CMakeLists do Doctest 2.4.11 declara cmake_minimum_required(3.0),
+        # recusado pelo CMake >= 4.0. Esta variável contorna isso (é ignorada
+        # por versões mais antigas do CMake).
+        set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+        FetchContent_MakeAvailable(doctest)
+        unset(CMAKE_POLICY_VERSION_MINIMUM)
+
+        set(TMC_DOCTEST_ORIGIN "baixado (FetchContent, v2.4.11)")
+    else()
+        message(FATAL_ERROR
+            "Doctest não encontrado. Instale-o (ex.: 'apt install doctest-dev', "
+            "'vcpkg install doctest'), informe -Ddoctest_DIR=<caminho>, ou "
+            "habilite -DTMC_FETCH_DOCTEST=ON para baixá-lo automaticamente.")
+    endif()
+endif()
 
 # ---------------------------------------------------------------------------
 # Funções auxiliares
@@ -127,7 +169,10 @@ function(tmc_add_library NAME)
     endif()
 endfunction()
 
-# Cria um executável de teste para cada tests/<subdir>/*.cpp (Qt Test + CTest).
+# Cria um executável de teste para cada tests/<subdir>/*.cpp (Qt Test e/ou
+# Doctest + CTest). Cada .cpp precisa ter o seu próprio main(): use QTEST_MAIN
+# (Qt Test) ou defina DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN antes de incluir
+# <doctest/doctest.h> (Doctest).
 #
 #   tmc_add_tests(<subdir> <lib-a-linkar>)
 function(tmc_add_tests SUBDIR LIB)
@@ -139,7 +184,7 @@ function(tmc_add_tests SUBDIR LIB)
         set(TARGET tmc_test_${SUBDIR}_${TEST_NAME})
 
         add_executable(${TARGET} ${TEST_SRC})
-        target_link_libraries(${TARGET} PRIVATE ${LIB} Qt6::Test)
+        target_link_libraries(${TARGET} PRIVATE ${LIB} Qt6::Test doctest::doctest)
         tmc_configure_target(${TARGET})
 
         add_test(NAME ${SUBDIR}.${TEST_NAME} COMMAND ${TARGET})
@@ -246,4 +291,7 @@ message(STATUS "  Build type : ${CMAKE_BUILD_TYPE}")
 message(STATUS "  C++ std    : ${CMAKE_CXX_STANDARD} (extensões: ${CMAKE_CXX_EXTENSIONS})")
 message(STATUS "  Qt         : ${Qt6_VERSION}")
 message(STATUS "  Testes     : ${TMC_BUILD_TESTS}")
+if(TMC_BUILD_TESTS)
+    message(STATUS "  Doctest    : ${TMC_DOCTEST_ORIGIN}")
+endif()
 message(STATUS "  Benchmarks : ${TMC_BUILD_BENCHMARKS}")
