@@ -129,7 +129,7 @@ TaskManager/
 │   │   ├── widgets/
 │   │   └── dialogs/
 │   ├── controller/
-│   └── main.cpp
+│   ├── main/
 ├── tests/
 │   ├── model/
 │   ├── controller/
