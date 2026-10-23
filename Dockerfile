@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # =============================================================================
-# Task Manager Craft - Dockerfile multi-stage
+# HouseM - Dockerfile Multi-Stage
 #
 # Requisitos extraídos do CMakeLists.txt:
 #   - CMake >= 3.21
