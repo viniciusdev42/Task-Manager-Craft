@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(TaskManagerCraft
+project(HouseM
     VERSION 1.0.0
-    DESCRIPTION "Task Manager Craft - Gerenciador de Tarefas em C++20 com Qt6 (MVC)."
+    DESCRIPTION "HouseM - Gerenciador de Tarefas em C++20 com Qt6 (MVC)."
     LANGUAGES CXX
 )
 
@@ -224,16 +224,16 @@ tmc_add_library(tmc_ui
 # ---------------------------------------------------------------------------
 file(GLOB TMC_QRC_FILES CONFIGURE_DEPENDS ${PROJECT_SOURCE_DIR}/resources/*.qrc)
 
-qt_add_executable(TaskManagerCraft
+qt_add_executable(HouseM
     src/main.cpp
     ${TMC_QRC_FILES}
 )
 
 # tmc_ui antes de tmc_model: ordem correta para o ld (GNU) com libs estáticas.
-target_link_libraries(TaskManagerCraft PRIVATE tmc_ui tmc_model Qt6::Widgets)
-tmc_configure_target(TaskManagerCraft)
+target_link_libraries(HouseM PRIVATE tmc_ui tmc_model Qt6::Widgets)
+tmc_configure_target(HouseM)
 
-set_target_properties(TaskManagerCraft PROPERTIES
+set_target_properties(HouseM PROPERTIES
     WIN32_EXECUTABLE ON
     MACOSX_BUNDLE    ON
 )
@@ -270,13 +270,13 @@ endif()
 # ---------------------------------------------------------------------------
 include(GNUInstallDirs)
 
-install(TARGETS TaskManagerCraft
+install(TARGETS HouseM
     BUNDLE  DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 qt_generate_deploy_app_script(
-    TARGET TaskManagerCraft
+    TARGET HouseM
     OUTPUT_SCRIPT TMC_DEPLOY_SCRIPT
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
@@ -285,7 +285,7 @@ install(SCRIPT ${TMC_DEPLOY_SCRIPT})
 # ---------------------------------------------------------------------------
 # Resumo da configuração
 # ---------------------------------------------------------------------------
-message(STATUS "---- Task Manager Craft ${PROJECT_VERSION} ----")
+message(STATUS "---- HouseM ${PROJECT_VERSION} ----")
 message(STATUS "  Compilador : ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 message(STATUS "  Build type : ${CMAKE_BUILD_TYPE}")
 message(STATUS "  C++ std    : ${CMAKE_CXX_STANDARD} (extensões: ${CMAKE_CXX_EXTENSIONS})")
